@@ -21,6 +21,9 @@
 #define MAX_FEEDRATE         (1000000)
 #define MIN_FEEDRATE         (1)
 #define NUM_AXIES            (4)
+#define MAX_X                (1500)
+#define MAX_Y                (1500)
+#define MAX_Z                (1500)
 
 
 //------------------------------------------------------------------------------
