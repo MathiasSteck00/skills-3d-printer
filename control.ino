@@ -135,6 +135,8 @@ void onestep(int motor) {
  * @input newy the destination y position
  **/
 void line(float newx,float newy,float newz,float newe) {
+  if(newx > MAX_X or newy > MAX_Y or newz > MAX_Z)
+    return;
   a[0].delta = (newx-px)*STEPS_PER_MM;
   a[1].delta = (newy-py)*STEPS_PER_MM;
   a[2].delta = (newz-pz)*STEPS_PER_MM;
@@ -175,12 +177,16 @@ void line(float newx,float newy,float newz,float newe) {
   Serial.println(F("Start >"));
 #endif
 
+  
+  
   for( i=0; i<maxsteps; ++i ) {
     for(j=0;j<NUM_AXIES;++j) {
       a[j].over += a[j].absdelta;
       if(a[j].over >= maxsteps) {
         a[j].over -= maxsteps;
         onestep(j);
+        if(endswitch_x_p or endswitch_y_p or endswitch_z_p or endswitch_x_n or endswitch_y_n or endswitch_z_n)
+          return;
       }
     }
 
@@ -376,13 +382,13 @@ void motor_disable() {
 }
 
 void resetPosition() {
-  while(!(endSwitchX)){
+  while(!(endswitch_x_n)){
     onestep(0);
   }
-  while(!(endSwitchY)){
+  while(!(endswitch_y_n)){
     onestep(1);
   }
-  while(!(endSwitchZ)){
+  while(!(endswitch_z_n)){
     onestep(2);
   }
 
