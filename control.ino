@@ -339,24 +339,24 @@ void ready() {
  * Pins fits a Ramps 1.4 board
  */
 void motor_setup() {
-  motors[0].step_pin=54;
-  motors[0].dir_pin=55;
-  motors[0].enable_pin=38;
-  motors[0].limit_switch_pin=3;
+  motors[0].step_pin=44;
+  motors[0].dir_pin=22;
+  motors[0].enable_pin=23;
+  motors[0].limit_switch_pin=24;
 
-  motors[1].step_pin=60;
-  motors[1].dir_pin=61;
-  motors[1].enable_pin=56;
-  motors[1].limit_switch_pin=14;
+  motors[1].step_pin=46;
+  motors[1].dir_pin=25;
+  motors[1].enable_pin=26;
+  motors[1].limit_switch_pin=27;
 
-  motors[2].step_pin=46;
-  motors[2].dir_pin=48;
-  motors[2].enable_pin=62;
-  motors[2].limit_switch_pin=18;
+  motors[2].step_pin=45;
+  motors[2].dir_pin=28;
+  motors[2].enable_pin=29;
+  motors[2].limit_switch_pin=30;
 
-  motors[3].step_pin=26;
-  motors[3].dir_pin=28;
-  motors[3].enable_pin=24;
+  motors[3].step_pin=31;
+  motors[3].dir_pin=32;
+  motors[3].enable_pin=33;
   motors[3].limit_switch_pin=34;
   
   int i;
