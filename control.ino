@@ -1,10 +1,20 @@
 //------------------------------------------------------------------------------
+// 4 Axis CNC Demo  - supports MEGA 2560 Arduino RAMPS 1.4
+// dan@marginallyclever.com 2013-10-28
+// Modified by Søren Vedel
+// sorenvedel@gmail.com 2015-06-19
+//------------------------------------------------------------------------------
+// Copyright at end of file.
+// please see http://www.github.com/MarginallyClever/GcodeCNCDemo for more information.
+
+
+//------------------------------------------------------------------------------
 // CONSTANTS
 //------------------------------------------------------------------------------
 //#define VERBOSE              (1)  // add to get a lot more serial output.
 
 #define VERSION              (2)  // firmware version
-#define BAUD                 (57600)  // How fast is the Arduino talking?
+#define BAUD                 (9600)  // How fast is the Arduino talking?
 #define MAX_BUF              (64)  // What is the longest message Arduino can store?
 #define STEPS_PER_TURN       (400)  // depends on your stepper motor.  most are 200.
 #define STEPS_PER_MM         (STEPS_PER_TURN*16/1.25)  // (400*16)/1.25 with a M8 spindle
@@ -15,6 +25,14 @@
 #define MAX_Y                (1500)
 #define MAX_Z                (1500)
 
+#define endswitch_x_p         1
+#define endswitch_x_n         1
+#define endswitch_y_p         1
+#define endswitch_y_n         1
+#define endswitch_z_p         1
+#define endswitch_z_n         1
+
+char serialBuffer = 0xFF;
 
 //------------------------------------------------------------------------------
 // STRUCTS
@@ -221,8 +239,8 @@ static float atan3(float dy,float dx) {
  * @input val the return value if /code/ is not found.
  **/
 float parsenumber(char code,float val) {
-  char *ptr=serialBuffer;  // start at the beginning of buffer
-  while((long)ptr > 1 && (*ptr) && (long)ptr < (long)serialBuffer+sofar) {  // walk to the end
+  char *ptr=buffer;  // start at the beginning of buffer
+  while((long)ptr > 1 && (*ptr) && (long)ptr < (long)buffer+sofar) {  // walk to the end
     if(*ptr==code) {  // if you find code on your walk,
       return atof(ptr+1);  // convert the digits that follow into a float and return it
     }
@@ -288,7 +306,7 @@ void processCommand() {
     line( parsenumber('X',(mode_abs?px:0)) + (mode_abs?0:px),
           parsenumber('Y',(mode_abs?py:0)) + (mode_abs?0:py),
           parsenumber('Z',(mode_abs?pz:0)) + (mode_abs?0:pz),
-          parsenumber('E',(mode_abs?pe:0)) + (mode_abs?0:pe) );
+          parsenumber('E',(mode_abs?pe:0)) + (mode_abs?0:pe));
     break;
     }
   case  2:
@@ -329,7 +347,7 @@ void ready() {
  * Pins fits a Ramps 1.4 board
  */
 void motor_setup() {
-  motors[0].step_pin=44;
+ motors[0].step_pin=44;
   motors[0].dir_pin=22;
   motors[0].enable_pin=23;
   motors[0].limit_switch_pin=24;
@@ -427,3 +445,5 @@ void loop() {
     }
   }
 }
+
+
