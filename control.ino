@@ -1,14 +1,4 @@
 //------------------------------------------------------------------------------
-// 4 Axis CNC Demo  - supports MEGA 2560 Arduino RAMPS 1.4
-// dan@marginallyclever.com 2013-10-28
-// Modified by Søren Vedel
-// sorenvedel@gmail.com 2015-06-19
-//------------------------------------------------------------------------------
-// Copyright at end of file.
-// please see http://www.github.com/MarginallyClever/GcodeCNCDemo for more information.
-
-
-//------------------------------------------------------------------------------
 // CONSTANTS
 //------------------------------------------------------------------------------
 //#define VERBOSE              (1)  // add to get a lot more serial output.
@@ -437,21 +427,3 @@ void loop() {
     }
   }
 }
-
-
-/**
-* This file is part of GcodeCNCDemo.
-*
-* GcodeCNCDemo is free software: you can redistribute it and/or modify
-* it under the terms of the GNU General Public License as published by
-* the Free Software Foundation, either version 3 of the License, or
-* (at your option) any later version.
-*
-* GcodeCNCDemo is distributed in the hope that it will be useful,
-* but WITHOUT ANY WARRANTY; without even the implied warranty of
-* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-* GNU General Public License for more details.
-*
-* You should have received a copy of the GNU General Public License
-* along with Foobar. If not, see <http://www.gnu.org/licenses/>.
-*/
